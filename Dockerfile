@@ -6,14 +6,15 @@ RUN apt-get update -y \
 
 RUN curl -sL https://deb.nodesource.com/setup_12.x |bash - \
     && apt-get install -y --no-install-recommends \
-    wget \
-    git \
-    vim \
+    build-essential \
     curl \
-    make \
     cmake \
+    git \
+    make \
     nodejs \
     tzdata \
+    vim \
+    wget \
     &&  ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
     && apt-get autoremove -y \
     && apt-get clean \
@@ -25,8 +26,9 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x |bash - \
 
 # install python library
 COPY requirements.txt .
-RUN pip3 install --upgrade pip && \
-    pip3 install --no-cache-dir -r requirements.txt \
+RUN pip3 install --upgrade pip \
+    && pip3 install --upgrade setuptools\
+    && pip3 install --no-cache-dir -r requirements.txt\
     && rm -rf ~/.cache/pip
 
 # install jupyterlab & extentions
@@ -36,19 +38,28 @@ RUN pip3 install --upgrade --no-cache-dir \
     jupyterlab_code_formatter \
     yapf \
     && rm -rf ~/.cache/pip \
-    && jupyter labextension install \
-      @hokyjack/jupyterlab-monokai-plus \
-      @ryantam626/jupyterlab_code_formatter \
-      @jupyterlab/toc \
-      jupyterlab-vimrc \
-      @axlair/jupyterlab_vim \
+    # && jupyter labextension install \
+    #   @hokyjack/jupyterlab-monokai-plus \
+    #   @ryantam626/jupyterlab_code_formatter \
+    #   @jupyterlab/toc \
+    #   jupyterlab-vimrc \
+    #   @axlair/jupyterlab_vim \
     && jupyter serverextension enable --py jupyterlab_code_formatter
 
 # install jupyter-kite
-RUN cd && \
-    wget https://linux.kite.com/dls/linux/current && \
-    chmod 777 current && \
-    sed -i 's/"--no-launch"//g' current > /dev/null && \
-    ./current --install ./kite-installer
+# RUN cd && \
+#     wget https://linux.kite.com/dls/linux/current && \
+#     chmod 777 current && \
+#     sed -i 's/"--no-launch"//g' current > /dev/null && \
+#     ./current --install ./kite-installer
+
+# MeCab
+# RUN apt-get install -y \
+#     mecab \
+#     libmecab-dev \
+#     mecab-ipadic-utf8 && \
+#     pip3 install mecab-python3==1.0.1 \
+#     unidic-lite \
+#     gensim
 
 WORKDIR /home/work/notebook
