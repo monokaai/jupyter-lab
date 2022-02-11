@@ -1,8 +1,17 @@
-numpy
-pandas
+beautifulsoup4
+japanize_matplotlib
+keras
+lightgbm
 matplotlib
+mixtend
+numpy
+opencv-python
+pandas
+Pillow
+plotly
+pycaret
+requests
 seaborn
 scikit-learn
-lightgbm
-# xgboost
-# keras
+scipy
+xgboost

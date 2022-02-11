@@ -1,4 +1,5 @@
-FROM python:3.8
+FROM python:3.9.7-buster
+ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -y \
     && apt-get upgrade -y
@@ -12,6 +13,8 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x |bash - \
     make \
     cmake \
     nodejs \
+    tzdata \
+    &&  ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf \
@@ -48,4 +51,4 @@ RUN cd && \
     sed -i 's/"--no-launch"//g' current > /dev/null && \
     ./current --install ./kite-installer
 
-WORKDIR /home/work/
+WORKDIR /home/work/notebook
