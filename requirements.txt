@@ -10,6 +10,7 @@ mlxtend
 nose
 numpy
 opencv-python==4.5.4.58
+openpyxl
 pandas
 Pillow
 plotly
@@ -19,5 +20,6 @@ requests
 # seaborn
 scikit-learn==1.0.1
 scipy
+selenium
 setuptools
 xgboost

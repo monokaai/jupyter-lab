@@ -46,6 +46,7 @@ RUN pip3 install --upgrade --no-cache-dir \
     #   @axlair/jupyterlab_vim \
     && jupyter serverextension enable --py jupyterlab_code_formatter
 
+# currently unavailable
 # install jupyter-kite
 # RUN cd && \
 #     wget https://linux.kite.com/dls/linux/current && \

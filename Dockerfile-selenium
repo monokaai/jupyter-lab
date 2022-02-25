@@ -1,0 +1,2 @@
+FROM seleniarm/standalone-chromium
+# FROM selenium/standalone-chrome:98.0 # M1 MacのようなARM64アーキテクチャでなければこっちが安定しそう
